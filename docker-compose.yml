@@ -1,0 +1,33 @@
+version: "3"
+services:
+  reactapp:
+    build:
+      context: ./client
+    container_name: react-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - nodeapp
+  
+  nodeapp:
+    build:
+      context: ./server
+    container_name: node-app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+
+volumes:
+  postgres-db:
