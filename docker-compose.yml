@@ -3,6 +3,7 @@ services:
   reactapp:
     build:
       context: ./client
+    image: faresatef/pern-app:react-app
     container_name: react-app
     ports:
       - "3000:3000"
@@ -12,6 +13,7 @@ services:
   nodeapp:
     build:
       context: ./server
+    image: faresatef/pern-app:node-app
     container_name: node-app
     ports:
       - "5000:5000"
