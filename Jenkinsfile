@@ -1,10 +1,11 @@
 pipeline {  
      agent any  
+     tools {nodejs "nodejs"}
      stages {  
          stage('build') {  
              steps {  
                 sh 'echo "start build"'
-                dir ('client') {
+                dir ('server') {
                     sh 'pwd'
                     sh 'npm install'
                     sh 'npm start'
