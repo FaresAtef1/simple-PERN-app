@@ -4,6 +4,7 @@ pipeline {
          stage('build') {  
              steps {  
                 sh 'echo "start build"'
+                sh 'cd server'
                 sh 'npm install'
                 sh 'npm start'
              }  
@@ -23,7 +24,9 @@ pipeline {
              echo 'This will run only if the run was marked as unstable'  
          }  
          changed {  
-             mail bcc: '', body: "<b>Back to work</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br>", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "Successful CI: Project name -> ${env.JOB_NAME}", to: "qwitterinc@gmail.com";    
+            // send only if previous build failed and current one succeeded
+            if(currentBuild.result == 'SUCCESS' && previousBuild.result == 'FAILURE') {
+                mail bcc: '', body: "<b>Back to work</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br>", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "Successful CI: Project name -> ${env.JOB_NAME}", to: "qwitterinc@gmail.com";    
          }  
      }  
  }
