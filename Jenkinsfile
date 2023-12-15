@@ -9,7 +9,7 @@ pipeline {
                     sh 'pwd'
                     sh 'npm install'
                     // sh 'npm start'
-                    sh 'cd "finish"'
+                    sh 'echo "finish"'
                 }
              }  
          }  
