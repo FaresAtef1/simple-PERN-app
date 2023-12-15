@@ -8,7 +8,8 @@ pipeline {
                 dir ('server') {
                     sh 'pwd'
                     sh 'npm install'
-                    sh 'npm start'
+                    // sh 'npm start'
+                    sh 'cd "finish"'
                 }
              }  
          }  
