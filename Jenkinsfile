@@ -4,8 +4,7 @@ pipeline {
          stage('build') {  
              steps {  
                 sh 'echo "start build"'
-                dir ('server')
-                {
+                dir ('server') {
                     sh 'npm install'
                     sh 'npm start'
                 }
